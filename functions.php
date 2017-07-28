@@ -185,7 +185,7 @@ function task8($str)
 </pre>';
 	}
 
-	preg_match('|([0-9]\d*)|', $str, $matches);
+	preg_match_all('|([0-9]\d*)|', $str, $matches);
 
 	if (preg_match('|\:\)|', $str)) {
 		smile();
