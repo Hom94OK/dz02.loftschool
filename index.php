@@ -14,7 +14,7 @@ echo '<br> Result task1: ' . task1($strArray, true).'<br>';
 
 // Task2
 $the = [4, 66, 7, 9, 2];
-echo '<br><br> Result task2: ' . task2($the, '*') . '<br>';
+echo '<br><br> Result task2: ' . task2($the, "+") . '<br>';
 
 // Task3
 echo '<br><br> Result task3: ' . task3("+", 1, 2, 3, 5.2) . '<br>';
@@ -23,11 +23,12 @@ echo '<br><br> Result task3: ' . task3("+", 1, 2, 3, 5.2) . '<br>';
 echo '<br><br> Result task4: ';
 $rx = mt_rand(1, 20);
 $ry = mt_rand(1, 20);
+
 task4($rx, $ry);
 echo '<br>';
 
 // Task5
-$str = 'TENET';
+$str = 'Анна';
 echo '<br><br> Result task5: ' . '<br>';
 $res = task5_1($str);
 task5_2($res);

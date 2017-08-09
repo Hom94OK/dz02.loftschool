@@ -9,15 +9,14 @@
  * @return string
  */
 // task1
-function task1($StAr, $bool = false)
+function task1($ArrayString, $bool = false)
 {
 	if ($bool) {
-		return join(' ', $StAr);
+		return join(' ', $ArrayString);
 	} else {
-		foreach ($StAr as $value) {
+		foreach ($ArrayString as $value) {
 			echo '<p>' . $value . '<p>';
 		}
-
 		return '';
 	}
 }
@@ -27,24 +26,24 @@ function task1($StAr, $bool = false)
  * @param $AChar
  * @return float|int
  */
-function task2($NbAr, $AChar)
+function task2($Array_Number, $Arithmetic_symbol)
 {
-	$cof = count($NbAr) - 1;
+	$cof = count($Array_Number) - 1;
 	for ($i = 0, $sum = 1; $i <= $cof; $i++) {
-		switch ($AChar) {
+		switch ($Arithmetic_symbol) {
 			case "+":
-				return array_sum($NbAr);
+				return array_sum($Array_Number);
 			case "-":
-				$sum -= $NbAr[$i];
+				$sum -= $Array_Number[$i];
 				break;
 			case "*":
-				$sum *= $NbAr[$i];
+				$sum *= $Array_Number[$i];
 				break;
 			case "/":
-				$sum /= $NbAr[$i];
+				$sum /= $Array_Number[$i];
 				break;
 			default:
-				$s1 = "Ошибка !!!: $AChar не является арифметическим действием <br>";
+				$s1 = "Ошибка !!!: $Arithmetic_symbol не является арифметическим действием <br>";
 				return "$s1 Попробуйте + - * / ";
 		}
 	}
@@ -57,44 +56,44 @@ function task2($NbAr, $AChar)
  */
 function task3()
 {
-	$operator = true;
+//	Arithmetic_symbol
+	$sum = func_get_arg(1);
+	$fna = func_num_args();
+	$i = 2;
+
 	switch (func_get_arg(0)) {
 		case "+":
-			for ($sum = func_get_arg(1), $i = 2; $i < func_num_args(); $i++) {
+			for (; $i < $fna; $i++) {
 				$sum += func_get_arg($i);
 			}
 			break;
 		case "-":
-			for ($sum = func_get_arg(1), $i = 2; $i < func_num_args(); $i++) {
+			for (; $i < $fna; $i++) {
 				$sum -= func_get_arg($i);
 			}
 			break;
 		case "*":
-			for ($sum = func_get_arg(1), $i = 2; $i < func_num_args(); $i++) {
+			for (; $i < $fna; $i++) {
 				$sum *= func_get_arg($i);
 			}
 			break;
 		case "/":
-			for ($sum = func_get_arg(1), $i = 2; $i < func_num_args(); $i++) {
+			for (; $i < $fna; $i++) {
 				$sum /= func_get_arg($i);
 			}
 			break;
 		default:
-			$operator = false;
 			$s1 = "Ошибка !!!: " . func_get_arg(0) . " не является арифметическим действием <br>";
 			return "$s1 Попробуйте + - * / ";
 	}
-	if ($operator) {
-		for ($str = '', $i = 1; $i < func_num_args(); $i++) {
-			if ($i == func_num_args() - 1) {
-				$str .= func_get_arg($i) . ' = ';
-			} else {
-				$str .= func_get_arg($i) . ' ' . func_get_arg(0) . ' ';
-			}
+	for ($str = '', $i = 1; $i < $fna; $i++) {
+		if ($i == $fna - 1) {
+			$str .= func_get_arg($i) . ' = ';
+		} else {
+			$str .= func_get_arg($i) . ' ' . func_get_arg(0) . ' ';
 		}
-		return $str . $sum;
 	}
-	return '';
+	return $str . $sum;
 }
 
 // TASK 4?
@@ -104,7 +103,9 @@ function task3()
  */
 function task4($x, $y)
 {
-	if (!empty($x) && !empty($y)) {
+	if (empty($x) || empty($y)) {
+		echo 'Одна из переменних пуста';
+	} elseif (is_int($x) && is_int($y)) {
 		echo '<table style="border: 1px solid #000; border-collapse: collapse;">';
 		for ($i = 1; $i <= $x; $i++) {
 			$ox[] = $i;
@@ -125,20 +126,29 @@ function task4($x, $y)
 			}
 		}
 		echo '<table>';
-	} else {
-		echo 1123;
+	} elseif (is_double($x) || is_double($y)) {
+		echo 'Одна или две переменные дробные числа';
+	} elseif (is_string($x) || is_string($y)) {
+		echo 'Одна или две переменные строки';
 	}
 }
 
 // TASK 5
-function task5_1($str)
+function task5_1($words)
 {
-	if (strrev($str) == $str) {
+	$words = mb_strtolower($words);
+	$words = str_replace(' ', '', $words);
+	$words = iconv('utf-8', 'windows-1251', $words);
+	$words = strrev($words);
+	if ($words === strrev($words)) {
+		$words = iconv('windows-1251', 'utf-8', $words);
 		return true;
 	} else {
+		$words = iconv('windows-1251', 'utf-8', $words);
 		return false;
 	}
 }
+
 function task5_2($res)
 {
 	echo 'Резултат виконання функції task5_1: " ';
@@ -206,6 +216,6 @@ function task9()
 // TASK 10
 function task10()
 {
-	file_put_contents('anothertest.txt', 'Hello again!',LOCK_EX);
+	file_put_contents('anothertest.txt', 'Hello again!', LOCK_EX);
 	echo 'В файл anothertest.txt з вмістом "Hello again!" создан.';
 }
