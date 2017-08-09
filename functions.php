@@ -21,6 +21,7 @@ function task1($ArrayString, $bool = false)
 	}
 }
 
+// TASK 2
 /**
  * @param $NbAr
  * @param $AChar
