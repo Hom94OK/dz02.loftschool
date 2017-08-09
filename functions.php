@@ -59,32 +59,25 @@ function task3()
 //	Arithmetic_symbol
 	$sum = func_get_arg(1);
 	$fna = func_num_args();
-	$i = 2;
 
-	switch (func_get_arg(0)) {
-		case "+":
-			for (; $i < $fna; $i++) {
+	for ($i = 2; $i < $fna; $i++) {
+		switch (func_get_arg(0)) {
+			case "+":
 				$sum += func_get_arg($i);
-			}
-			break;
-		case "-":
-			for (; $i < $fna; $i++) {
+				break;
+			case "-":
 				$sum -= func_get_arg($i);
-			}
-			break;
-		case "*":
-			for (; $i < $fna; $i++) {
+				break;
+			case "*":
 				$sum *= func_get_arg($i);
-			}
-			break;
-		case "/":
-			for (; $i < $fna; $i++) {
+				break;
+			case "/":
 				$sum /= func_get_arg($i);
-			}
-			break;
-		default:
-			$s1 = "Ошибка !!!: " . func_get_arg(0) . " не является арифметическим действием <br>";
-			return "$s1 Попробуйте + - * / ";
+				break;
+			default:
+				$s1 = "Ошибка !!!: " . func_get_arg(0) . " не является арифметическим действием <br>";
+				return "$s1 Попробуйте + - * / ";
+		}
 	}
 	for ($str = '', $i = 1; $i < $fna; $i++) {
 		if ($i == $fna - 1) {
